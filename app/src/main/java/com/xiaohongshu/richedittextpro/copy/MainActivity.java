@@ -7,6 +7,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,16 +17,13 @@ import com.xiaohongshu.richedittextpro.R;
 import com.xiaohongshu.richedittextpro.copy.richparser.RichParserManager;
 import com.xiaohongshu.richedittextpro.copy.richparser.base.AbstractRichParser;
 import com.xiaohongshu.richedittextpro.copy.richparser.base.OnSpannableClickListener;
-import com.xiaohongshu.richedittextpro.copy.richparser.base.RichItemBean;
 import com.xiaohongshu.richedittextpro.copy.richparser.strategy.NormalRichParser;
-import com.xiaohongshu.richedittextpro.copy.richparser.strategy.SimpleRichParser;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.xiaohongshu.richedittextpro.copy.richparser.strategy.PoiRichParser;
 
 public class MainActivity extends AppCompatActivity implements OnSpannableClickListener {
 
     private EditText mEditText;
+    private EditText mEditTextNormal, mEditTextPro;
     private TextView mTvServer2Local, mTvLocal2Server;
 
     @Override
@@ -34,33 +32,45 @@ public class MainActivity extends AppCompatActivity implements OnSpannableClickL
         setContentView(R.layout.activity_main);
 
         mEditText = (EditText) findViewById(R.id.edittext);
+        mEditTextNormal = (EditText) findViewById(R.id.edittextNormal);
+        mEditTextPro = (EditText) findViewById(R.id.edittextPro);
         mTvServer2Local = (TextView) findViewById(R.id.server2Local);
         mTvLocal2Server = (TextView) findViewById(R.id.local2Server);
 
         mTvServer2Local.setMovementMethod(LinkMovementMethod.getInstance());
         mTvServer2Local.setHighlightColor(getResources().getColor(android.R.color.transparent));
 
-        RichParserManager.getManager().registerParser(
-                new SimpleRichParser(this)
-                        .setRichItems(createSimpleRichItemList()));
-        RichParserManager.getManager().registerParser(
-                new NormalRichParser(this)
-                        .setRichItems(createNormalRichItemList()));
-    }
+        RichParserManager.getManager().registerParser(new PoiRichParser(this));
+        RichParserManager.getManager().registerParser(new NormalRichParser(this));
 
-    private List<RichItemBean> createSimpleRichItemList() {
-        List<RichItemBean> richItemBeen = new ArrayList<>();
-        richItemBeen.add(RichItemBean.createRichItem("", "fade"));
-        richItemBeen.add(RichItemBean.createRichItem("", "try"));
-        return richItemBeen;
-    }
+        StringBuilder builder = new StringBuilder();
+        String jsonStr = "" +
+                "{" +
+                "    \"id\":1," +
+                "    \"latitude\":116.46," +
+                "    \"longitude\":39.92" +
+                "}";
+        String text = String.format("#[位置][%s]测试#", jsonStr);
 
-    private List<RichItemBean> createNormalRichItemList() {
-        List<RichItemBean> richItemBeen = new ArrayList<>();
-        richItemBeen.add(RichItemBean.createRichItem("音乐", "我以为"));
-        richItemBeen.add(RichItemBean.createRichItem("音乐", "会长大的幸福"));
-        richItemBeen.add(RichItemBean.createRichItem("音乐", "带空格 的话题"));
-        return richItemBeen;
+        builder.append(text);
+
+        builder.append("普通的一句话没有富文本");
+
+        jsonStr = "" +
+                "{" +
+                "    \"id\":2," +
+                "    \"latitude\":116.46," +
+                "    \"longitude\":39.92" +
+                "}";
+        text = String.format("#[位置][%s]测试#", jsonStr);
+
+        builder.append(text);
+
+        mEditTextNormal.setText(RichParserManager.getManager().parseStr2Spannable(this, builder.toString()));
+        mEditTextPro.setText(RichParserManager.getManager().parseStr2Spannable(this, builder.toString()));
+        mEditTextPro.requestFocus();
+
+        mEditText.setText(builder);
     }
 
     public void server2Local(View view) {
@@ -98,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements OnSpannableClickL
     }
 
     @Override
-    public void onClick(AbstractRichParser parser, String type, String content, String sourceStr) {
+    public void onClick(AbstractRichParser parser, String type, Pair<String, String> content, String sourceStr) {
         Toast.makeText(this, String.format("sourceStr: %s,type: %s,content: %s", sourceStr, type, content), Toast.LENGTH_SHORT).show();
     }
 }
