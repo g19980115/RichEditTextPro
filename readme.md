@@ -7,7 +7,7 @@
    
 <img src='app/screenshot/extra.png' height='480px'/>
 
-#使用
+# 使用
 
 Step 1. Add the JitPack repository to your root `build.gradle`
 ```
