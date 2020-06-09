@@ -7,6 +7,24 @@
    
 <img src='app/screenshot/extra.png' height='480px'/>
 
+#使用
+
+Step 1. Add the JitPack repository to your root `build.gradle`
+```
+    allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+Step 2. Add the dependency
+```
+	dependencies {
+	        implementation 'com.github.g19980115:RichEditTextPro:1.0'
+	}
+```
+
 # 前言
 
 之前发过一个富文本编辑的项目，但是不完美，因为客户端的局限性比较大，现在做了一个完美版的富文本编辑，应该能够满足大部分需求了。
