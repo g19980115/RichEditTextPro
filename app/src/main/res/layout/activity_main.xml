@@ -7,19 +7,18 @@
     android:paddingBottom="@dimen/activity_horizontal_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".spannable.MainActivity">
+    android:paddingTop="@dimen/activity_vertical_margin">
 
     <EditText
         android:id="@+id/edittextNormal"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:gravity="left|top" />
 
-    <com.xiaohongshu.richedittextpro.copy.RichEditTextPro
+    <com.xhs.richparser.RichEditTextPro
         android:id="@+id/edittextPro"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:gravity="left|top" />
 
     <TextView

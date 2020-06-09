@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RichEditTextPro.iml" filepath="$PROJECT_DIR$/RichEditTextPro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/RichEditTextPro-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/RichEditTextPro-app.iml" group="RichEditTextPro/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/demo-RichEditTextPro.iml" filepath="$PROJECT_DIR$/.idea/modules/demo-RichEditTextPro.iml" group="RichEditTextPro" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/library.iml" filepath="$PROJECT_DIR$/.idea/modules/library/library.iml" group="RichEditTextPro/library" />
     </modules>
   </component>
 </project>

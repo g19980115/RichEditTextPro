@@ -13,12 +13,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.xhs.richparser.RichParserManager;
+import com.xhs.richparser.base.AbstractRichParser;
+import com.xhs.richparser.base.OnSpannableClickListener;
 import com.xiaohongshu.richedittextpro.R;
-import com.xiaohongshu.richedittextpro.copy.richparser.RichParserManager;
-import com.xiaohongshu.richedittextpro.copy.richparser.base.AbstractRichParser;
-import com.xiaohongshu.richedittextpro.copy.richparser.base.OnSpannableClickListener;
+import com.xiaohongshu.richedittextpro.copy.richparser.strategy.AtRichParser;
+import com.xiaohongshu.richedittextpro.copy.richparser.strategy.EmojiRichParser;
 import com.xiaohongshu.richedittextpro.copy.richparser.strategy.NormalRichParser;
 import com.xiaohongshu.richedittextpro.copy.richparser.strategy.PoiRichParser;
+import com.xiaohongshu.richedittextpro.copy.richparser.strategy.TopicParser;
 
 public class MainActivity extends AppCompatActivity implements OnSpannableClickListener {
 
@@ -42,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements OnSpannableClickL
 
         RichParserManager.getManager().registerParser(new PoiRichParser(this));
         RichParserManager.getManager().registerParser(new NormalRichParser(this));
+        RichParserManager.getManager().registerParser(new EmojiRichParser(this));
+        RichParserManager.getManager().registerParser(new AtRichParser(this));
+        RichParserManager.getManager().registerParser(new TopicParser(this));
 
         StringBuilder builder = new StringBuilder();
         String jsonStr = "" +
@@ -65,6 +71,12 @@ public class MainActivity extends AppCompatActivity implements OnSpannableClickL
         text = String.format("#[位置][%s]测试#", jsonStr);
 
         builder.append(text);
+
+        builder.append("\n#话题#");
+
+        builder.append("#[@][{\"id\":\"111\"}]名字#");
+
+        builder.append("\n#[e]龇牙#");
 
         mEditTextNormal.setText(RichParserManager.getManager().parseStr2Spannable(this, builder.toString()));
         mEditTextPro.setText(RichParserManager.getManager().parseStr2Spannable(this, builder.toString()));
