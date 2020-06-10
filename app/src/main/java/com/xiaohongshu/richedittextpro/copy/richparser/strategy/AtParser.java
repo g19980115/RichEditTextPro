@@ -19,9 +19,6 @@ import com.xiaohongshu.richedittextpro.R;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by wupengjian on 17/1/17.
- */
 public class AtParser extends NormalRichParser {
 
     public AtParser() {

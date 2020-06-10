@@ -2,29 +2,19 @@ package com.xiaohongshu.richedittextpro.copy.richparser.strategy;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
-import android.text.style.ImageSpan;
 import android.util.Pair;
 import android.view.View;
 
-import com.xhs.richparser.VerticalImageSpan;
-import com.xhs.richparser.base.AbstractRichParser;
 import com.xhs.richparser.base.OnSpannableClickListener;
-import com.xiaohongshu.richedittextpro.R;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by wupengjian on 17/1/17.
- */
 public class TopicParser extends NormalRichParser {
 
     public TopicParser() {
@@ -69,7 +59,7 @@ public class TopicParser extends NormalRichParser {
     }
 
     @Override
-    public SpannableStringBuilder parseStr2Spannable(Context context,final String richStr) {
+    public SpannableStringBuilder parseStr2Spannable(Context context, final String richStr) {
         final String type = getType4Server();
         final Pair<String, String> info = parseInfo4Server(richStr);
 
