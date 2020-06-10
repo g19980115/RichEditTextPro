@@ -2,15 +2,19 @@ package com.xiaohongshu.richedittextpro.copy.richparser.strategy;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.ImageSpan;
 import android.util.Pair;
 import android.view.View;
 
+import com.xhs.richparser.VerticalImageSpan;
 import com.xhs.richparser.base.OnSpannableClickListener;
+import com.xiaohongshu.richedittextpro.R;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,17 +36,17 @@ public class TopicParser extends NormalRichParser {
 
     @Override
     protected int getDrawableId(Pair<String, String> info) {
-        return 0;
+        return R.drawable.ic_at_tag;
     }
 
     @Override
     public String getType4Server() {
-        return "tp";
+        return "";
     }
 
     @Override
     public String getPattern4Server() {
-        return "#[^#\\s+\\[\\]]+#";
+        return "#[^#\\s\\[\\]]+#";
     }
 
     @Override
@@ -55,7 +59,7 @@ public class TopicParser extends NormalRichParser {
         while (matcher.find()) {
             infoArr[i++] = matcher.group();
         }
-        return new Pair<>("", infoArr[0]);
+        return new Pair<>("", " "+infoArr[0]+"# ");
     }
 
     @Override
@@ -63,9 +67,17 @@ public class TopicParser extends NormalRichParser {
         final String type = getType4Server();
         final Pair<String, String> info = parseInfo4Server(richStr);
 
-        final String str = String.format("#%s#", info.second);
+        final String str = String.format("#%s", info.second);
 
         SpannableStringBuilder spannableStr = new SpannableStringBuilder(str);
+
+        int drawableId = getDrawableId(info);
+        if (drawableId != 0) {
+            Drawable drawable = getDrawable(context, drawableId);
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+            ImageSpan imageSpan = new VerticalImageSpan(drawable, richStr, ImageSpan.ALIGN_BOTTOM);
+            spannableStr.setSpan(imageSpan, 1, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
 
         ForegroundColorSpan colorSpan = new ForegroundColorSpan(getColor());
         spannableStr.setSpan(colorSpan, 0, str.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

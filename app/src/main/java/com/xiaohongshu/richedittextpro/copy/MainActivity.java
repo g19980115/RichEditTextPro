@@ -20,6 +20,7 @@ import com.xiaohongshu.richedittextpro.R;
 import com.xiaohongshu.richedittextpro.copy.richparser.strategy.AtParser;
 import com.xiaohongshu.richedittextpro.copy.richparser.strategy.EmojiParser;
 import com.xiaohongshu.richedittextpro.copy.richparser.strategy.NormalRichParser;
+import com.xiaohongshu.richedittextpro.copy.richparser.strategy.NumberParser;
 import com.xiaohongshu.richedittextpro.copy.richparser.strategy.PoiRichParser;
 import com.xiaohongshu.richedittextpro.copy.richparser.strategy.TopicParser;
 
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements OnSpannableClickL
         RichParserManager.getManager().registerParser(new EmojiParser(this));
         RichParserManager.getManager().registerParser(new AtParser(this));
         RichParserManager.getManager().registerParser(new TopicParser(this));
+        RichParserManager.getManager().registerParser(new NumberParser(this));
 
         StringBuilder builder = new StringBuilder();
         String jsonStr = "" +
@@ -77,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements OnSpannableClickL
         builder.append("#[@][{\"id\":\"111\"}]名字#");
 
         builder.append("\n#[龇牙]#");
+
+        builder.append("\n12321321321321");
 
         mEditTextNormal.setText(RichParserManager.getManager().parseStr2Spannable(this, builder.toString()));
         mEditTextPro.setText(RichParserManager.getManager().parseStr2Spannable(this, builder.toString()));

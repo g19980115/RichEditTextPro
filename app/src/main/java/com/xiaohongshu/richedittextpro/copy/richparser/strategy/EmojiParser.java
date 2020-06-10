@@ -66,7 +66,7 @@ public class EmojiParser extends NormalRichParser {
         while (matcher.find()) {
             infoArr[i++] = matcher.group();
         }
-        return new Pair<>("[" + infoArr[0] + "]", "");
+        return new Pair<>("[" + infoArr[0] + "]", str.replaceFirst("#",""));
     }
 
     @Override
@@ -83,12 +83,10 @@ public class EmojiParser extends NormalRichParser {
         if (drawableId != 0) {
             Drawable drawable = getDrawable(context, drawableId);
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-            ImageSpan imageSpan = new VerticalImageSpan(drawable, richStr, ImageSpan.ALIGN_BOTTOM);
-            spannableStr.setSpan(imageSpan, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            ImageSpan imageSpan = new VerticalImageSpan(drawable, richStr, ImageSpan.ALIGN_BASELINE);
+            spannableStr.setSpan(imageSpan, 0, str.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         } else return spannableStr;
 
-        ForegroundColorSpan colorSpan = new ForegroundColorSpan(getColor());
-        spannableStr.setSpan(colorSpan, 0, str.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         return spannableStr;
     }
