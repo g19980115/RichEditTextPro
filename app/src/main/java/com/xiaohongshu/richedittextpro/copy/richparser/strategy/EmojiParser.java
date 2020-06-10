@@ -58,15 +58,7 @@ public class EmojiParser extends NormalRichParser {
 
     @Override
     public Pair<String, String> parseInfo4Server(String str) {
-        String extraPattern = "[^#\\[\\]]+"; // [^#\[\]]+
-        Pattern pattern = Pattern.compile(extraPattern);
-        Matcher matcher = pattern.matcher(str);
-        String[] infoArr = new String[3];
-        int i = 0;
-        while (matcher.find()) {
-            infoArr[i++] = matcher.group();
-        }
-        return new Pair<>("[" + infoArr[0] + "]", str.replaceFirst("#", ""));
+        return new Pair<>(str.replaceAll("#",""), str.replaceFirst("#", ""));
     }
 
     @Override
