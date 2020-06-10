@@ -22,13 +22,13 @@ import java.util.regex.Pattern;
 /**
  * Created by wupengjian on 17/1/17.
  */
-public class AtRichParser extends NormalRichParser {
+public class AtParser extends NormalRichParser {
 
-    public AtRichParser() {
+    public AtParser() {
         this(null);
     }
 
-    public AtRichParser(OnSpannableClickListener listener) {
+    public AtParser(OnSpannableClickListener listener) {
         super(listener);
     }
 
@@ -85,7 +85,7 @@ public class AtRichParser extends NormalRichParser {
             public void onClick(View widget) {
 
                 if (null != mOnClickListener) {
-                    mOnClickListener.onClick(AtRichParser.this, type, info, richStr);
+                    mOnClickListener.onClick(AtParser.this, type, info, richStr);
                 }
             }
 

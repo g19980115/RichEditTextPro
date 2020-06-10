@@ -52,7 +52,7 @@ public class TopicParser extends NormalRichParser {
 
     @Override
     public String getPattern4Server() {
-        return "#[^#\\[\\]]+#";
+        return "#[^#\\s+\\[\\]]+#";
     }
 
     @Override
