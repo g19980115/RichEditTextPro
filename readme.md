@@ -5,7 +5,7 @@
    - 精简大量代码
    - 富文本支持添加 `extra` 信息，如下图
    
-<img src='app/screenshot/extra.png' height='480px'/>
+<img src='app/screenshot/extra1.png' height='480px'/>
 
 # 使用
 
