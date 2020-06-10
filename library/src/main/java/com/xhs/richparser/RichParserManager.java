@@ -17,7 +17,7 @@ public class RichParserManager {
 
     private List<AbstractRichParser> mParserList;
 
-    private RichParserManager() {
+    public RichParserManager() {
         mParserList = new ArrayList<>();
     }
 
