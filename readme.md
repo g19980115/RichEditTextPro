@@ -11,6 +11,8 @@
    
 <img src='app/screenshot/extra1.png' height='480px'/>
 
+[![](https://jitpack.io/v/g19980115/RichEditTextPro.svg)](https://jitpack.io/#g19980115/RichEditTextPro)
+
 # 使用
 
 Step 1. Add the JitPack repository to your root `build.gradle`
