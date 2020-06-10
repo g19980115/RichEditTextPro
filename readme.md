@@ -15,18 +15,18 @@
 
 Step 1. Add the JitPack repository to your root `build.gradle`
 ```
-    allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
 ```
 Step 2. Add the dependency
 ```
-	dependencies {
-	        implementation 'com.github.g19980115:RichEditTextPro:1.0'
-	}
+dependencies {
+    implementation 'com.github.g19980115:RichEditTextPro:1.0'
+}
 ```
 
 # 前言
