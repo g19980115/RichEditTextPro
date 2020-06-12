@@ -68,7 +68,7 @@ public class RichParserManager {
         final SpannableStringBuilder str = spannableStringBuilder;
         Object[] firstRichSpan = getFirstRichItem4Spannable(str);
         if (firstRichSpan == null) {
-            return "";
+            return spannableStringBuilder.toString();
         }
         SpannableStringBuilder tempStr = str;
         StringBuilder stringBuilder = new StringBuilder();
